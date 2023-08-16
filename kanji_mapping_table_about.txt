@@ -1,0 +1,17 @@
+----------------------------------------------------------------------------------------
+This resource is a Chinese character mapping table of Japanese (Kanji), Traditional
+Chinese (TC) and Simplified Chinese (SC). 
+
+- Data format
+Kanji[TAB]TC[TAB]SC
+
+For more details, please refer to the following paper. Also, if you use this resource, 
+please cite this paper.
+
+Chenhui Chu, Toshiaki Nakazawa and Sadao Kurohashi:
+Chinese Characters Mapping Table of Japanese, Traditional Chinese and Simplified Chinese
+In Proceedings of the Eighth Conference on International Language Resources and Evaluation
+(LREC2012), pp.2149-2152, Istanbul, Turkey, (2012.5).
+
+Contact: chu@nlp.ist.i.kyoto-u.ac.jp
+----------------------------------------------------------------------------------------
