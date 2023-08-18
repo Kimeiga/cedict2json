@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Pinyin to On'yomi Mapping Visualization</title>
+	<title>onyomi to On'yomi Mapping Visualization</title>
 	<script src="https://d3js.org/d3.v7.min.js"></script>
 	<style>
 		/* Add some basic styling */
@@ -297,7 +297,7 @@
 			return Object.values(readings).reduce((acc, curr) => acc + curr.kanjis.length, 0);
 		}
 
-		fetch('processedMap2.json')
+		fetch('j2chReadings.json')
 			.then(response => response.json())
 			.then(data => {
 				console.log(data);
@@ -330,7 +330,7 @@
 				}
 
 				// Create an SVG for each pinyin
-				sortedData.forEach(([pinyin, readings]) => {
+				sortedData.forEach(([onyomi, pinyinMappings]) => {
 					const svg = d3.select("#visualization").append("svg")
 						.attr("width", width)
 						.attr("height", height)
@@ -341,7 +341,7 @@
 					svg.append("g").attr("class", "labels");
 					svg.append("g").attr("class", "lines");
 
-					const pieData = pie(Object.values(readings));
+					const pieData = pie(Object.values(pinyinMappings));
 
 					// PIE SLICES
 					const slice = svg.select(".slices")
@@ -361,7 +361,7 @@
 					text.enter().append("text")
 						.attr("dy", ".35em")
 						.text(d => {
-							const reading = Object.keys(readings).find(key => readings[key] === d.data);
+							const reading = Object.keys(pinyinMappings).find(key => pinyinMappings[key] === d.data);
 							// Display only the first 5 kanjis
 							const kanjisToShow = d.data.kanjis.slice(0, 5).join(", ");
 							return `${reading}: ${kanjisToShow}`;
@@ -391,11 +391,11 @@
 							return [arc.centroid(d), outerArc.centroid(d), pos];
 						});
 
-					// Add pinyin to the center of the donut
+					// Add onyomi to the center of the donut
 					svg.append("text")
 						.attr("dy", ".35em")
 						.style("text-anchor", "middle")
-						.text(pinyin);
+						.text(onyomi);
 				});
 			})
 			.catch(error => {
